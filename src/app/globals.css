@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+:root {
+  --color-cream: #F7F1E8;
+  --color-cream-dark: #EDE3D2;
+  --color-ghost-white: #FFFFFF;
+  --color-electric-cyan: #4DEEEA;
+  --color-neon-lime: #C6F432;
+  --color-soft-purple: #B6A6E8;
+  --color-ink: #1A1A1A;
+
+  --background: var(--color-cream);
+  --foreground: var(--color-ink);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-cream: var(--color-cream);
+  --color-cream-dark: var(--color-cream-dark);
+  --color-ghost-white: var(--color-ghost-white);
+  --color-electric-cyan: var(--color-electric-cyan);
+  --color-neon-lime: var(--color-neon-lime);
+  --color-soft-purple: var(--color-soft-purple);
+  --color-ink: var(--color-ink);
+  --font-sans: 'Geist', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+  --font-hand: 'Caveat', cursive;
+  --font-doodle: 'Patrick Hand', cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* ===================== SKETCH / DOODLE UTILITIES ===================== */
+
+.sketch-border {
+  border: 3px solid var(--color-ink);
+  border-radius: 18px 22px 20px 24px;
+  position: relative;
+}
+
+.sketch-border-thick {
+  border: 4px solid var(--color-ink);
+  border-radius: 26px 32px 28px 34px;
+}
+
+.sketch-shadow {
+  box-shadow: 6px 6px 0px 0px rgba(26,26,26,0.9);
+}
+
+.sketch-shadow-sm {
+  box-shadow: 4px 4px 0px 0px rgba(26,26,26,0.85);
+}
+
+.sketch-shadow-lg {
+  box-shadow: 10px 10px 0px 0px rgba(26,26,26,0.9);
+}
+
+.font-hand {
+  font-family: var(--font-handwriting);
+}
+
+.font-doodle {
+  font-family: var(--font-doodle);
+}
+
+/* Wiggle / float animations */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(-1deg); }
+  50% { transform: translateY(-14px) rotate(1deg); }
+}
+@keyframes float-med {
+  0%, 100% { transform: translateY(0px) rotate(1deg); }
+  50% { transform: translateY(-10px) rotate(-2deg); }
+}
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+.animate-float-med { animation: float-med 5s ease-in-out infinite; }
+.animate-float-fast { animation: float-fast 4s ease-in-out infinite; }
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+.animate-wiggle { animation: wiggle 2s ease-in-out infinite; }
+
+@keyframes bounce-sm {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animate-bounce-sm { animation: bounce-sm 2.4s ease-in-out infinite; }
+
+@keyframes pop-in {
+  0% { transform: scale(0.6) rotate(-8deg); opacity: 0; }
+  60% { transform: scale(1.08) rotate(2deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+.animate-pop-in { animation: pop-in 0.5s cubic-bezier(.34,1.56,.64,1) forwards; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-cream); }
+::-webkit-scrollbar-thumb { background: var(--color-ink); border-radius: 10px; border: 2px solid var(--color-cream); }
+
+/* Notebook paper texture */
+.notebook-bg {
+  background-color: var(--color-cream);
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 31px,
+      rgba(26,26,26,0.06) 32px
+    );
+}
+
+/* Hand-drawn dashed underline accent */
+.doodle-underline {
+  position: relative;
+  display: inline-block;
+}
+.doodle-underline::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -6px;
+  height: 8px;
+  background: var(--color-neon-lime);
+  z-index: -1;
+  border-radius: 4px;
+  transform: rotate(-1deg) skewX(-3deg);
+}
